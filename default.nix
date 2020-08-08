@@ -6,6 +6,7 @@ let
       dmenu-afreak = pkgs.callPackage ./pkgs/dmenu {};
       dmenuhist = pkgs.callPackage ./pkgs/dmenuhist {};
       grobi-afreak = pkgs.callPackage ./pkgs/grobi-afreak {};
+      sidequest = pkgs.callPackage ./pkgs/sidequest {};
       modules = {
          strongdm = import ./modules/sdm;
       };
