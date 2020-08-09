@@ -7,6 +7,7 @@ let
       dmenuhist = pkgs.callPackage ./pkgs/dmenuhist {};
       grobi-afreak = pkgs.callPackage ./pkgs/grobi-afreak {};
       sidequest = pkgs.callPackage ./pkgs/sidequest {};
+      nix-doc = pkgs.callPackage ./pkgs/nix-doc {};
       modules = {
          strongdm = import ./modules/sdm;
       };

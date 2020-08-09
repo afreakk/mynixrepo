@@ -4,3 +4,6 @@
 [submodule "pkgs/dmenu/dmenu"]
 	path = pkgs/dmenu/dmenu
 	url = git@gitlab.com:afreakk/dmenu.git
+[submodule "pkgs/nix-doc"]
+	path = pkgs/nix-doc
+	url = git@github.com:lf-/nix-doc.git
