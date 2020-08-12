@@ -49,6 +49,7 @@ let
       dmenuhist = pkgs.callPackage ./pkgs/dmenuhist {};
       grobi-afreak = pkgs.callPackage ./pkgs/grobi-afreak {};
       sidequest = pkgs.callPackage ./pkgs/sidequest {};
+      dcreemer-1pass = pkgs.callPackage ./pkgs/dcreemer-1pass {};
       nix-doc = pkgs.callPackage ./pkgs/nix-doc {};
       tmux-fingers = mkDerivation rec {
         pluginName = "fingers";
