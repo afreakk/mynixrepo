@@ -64,6 +64,53 @@ let
         };
         dependencies = [ pkgs.gawk ];
       };
+      tmux-extrakto = mkDerivation rec {
+        pluginName = "extrakto";
+        version = "0b7d04c3b8118514e853b913bed68e9947d653cd";
+        src = pkgs.fetchFromGitHub {
+          owner = "laktak";
+          repo = "extrakto";
+          rev = version;
+          sha256 = "11ml0ck5fxnyls83xi7gixgpnpmpp2md2dif6ig8vian9b3v6wjq";
+        };
+        dependencies = [ pkgs.fzf ];
+      };
+      # trying to make tmux-thumbs work, but it does not atm, so dont use
+      thumbs = pkgs.rustPlatform.buildRustPackage rec {
+        pname = "thumbs";
+        version = "b0a76015f5b6ab02ab11ffe96271a5ce847e366e";
+
+        src = pkgs.fetchFromGitHub {
+          owner = "fcsonline";
+          repo = "tmux-thumbs";
+          rev = version;
+          sha256 = "0fs7plashpqszmbk8d1xpinp5pa0fr39lkn8320ikwlqi0y1r9n2";
+        };
+
+        cargoSha256 = "02lqxp56zhwk18f476iid0jcqgs2q4a10gv2ndpm3lqkzqkq7hsm";
+      };
+      tmux-thumbs = mkDerivation rec {
+        pluginName = "thumbs";
+        rtpFilePath = "tmux-thumbs.tmux";
+        version = "b0a76015f5b6ab02ab11ffe96271a5ce847e366e";
+        src = pkgs.fetchFromGitHub {
+          owner = "fcsonline";
+          repo = "tmux-thumbs";
+          rev = version;
+          sha256 = "0fs7plashpqszmbk8d1xpinp5pa0fr39lkn8320ikwlqi0y1r9n2";
+        };
+        buildPhase = ''
+          ${pkgs.gnused}/bin/sed -i '$ d' tmux-thumbs.tmux
+          ${pkgs.gnused}/bin/sed -i '$ d' tmux-thumbs.tmux
+          ${pkgs.gnused}/bin/sed -i '$ d' tmux-thumbs.tmux
+          ${pkgs.gnused}/bin/sed -i '$ d' tmux-thumbs.tmux
+
+          ${pkgs.gnused}/bin/sed -i '$ d' tmux-thumbs.sh
+          ${pkgs.gnused}/bin/sed -i '$ d' tmux-thumbs.sh
+          echo '"${self.thumbs}/bin/tmux-thumbs" "${"\${PARAMS[@]}"}"' >> tmux-thumbs.sh
+        '';
+        dependencies = [ self.thumbs ];
+      };
       modules = {
          strongdm = import ./modules/sdm;
       };
