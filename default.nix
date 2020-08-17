@@ -51,19 +51,6 @@ let
       sidequest = pkgs.callPackage ./pkgs/sidequest {};
       dcreemer-1pass = pkgs.callPackage ./pkgs/dcreemer-1pass {};
       nix-doc = pkgs.callPackage ./pkgs/nix-doc {};
-      tmux-fingers = mkDerivation rec {
-        pluginName = "fingers";
-        rtpFilePath = "tmux-fingers.tmux";
-        version = "1.0.1";
-        src = pkgs.fetchFromGitHub {
-          owner = "Morantron";
-          repo = "tmux-fingers";
-          rev = version;
-          sha256 = "0gp37m3d0irrsih96qv2yalvr1wmf1n64589d4qzyzq16lzyjcr0";
-          fetchSubmodules = true;
-        };
-        dependencies = [ pkgs.gawk ];
-      };
       tmux-extrakto = mkDerivation rec {
         pluginName = "extrakto";
         version = "0b7d04c3b8118514e853b913bed68e9947d653cd";
