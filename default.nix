@@ -50,6 +50,26 @@ let
       sidequest = pkgs.callPackage ./pkgs/sidequest {};
       dcreemer-1pass = pkgs.callPackage ./pkgs/dcreemer-1pass {};
       nix-doc = pkgs.callPackage ./pkgs/nix-doc {};
+      tmux-jump = mkDerivation rec {
+        pluginName = "tmux-jump";
+        version = "416f613d3eaadbe1f6f9eda77c49430527ebaffb";
+        rtpFilePath = "tmux-jump.tmux";
+        nativeBuildInputs = [ pkgs.makeWrapper ];
+        postInstall = ''
+          ppath=$out/share/tmux-plugins/tmux-jump
+          mv $ppath/scripts/tmux-jump.sh $ppath/scripts/tmux-jump-unwrapped.sh
+          makeWrapper $ppath/scripts/tmux-jump-unwrapped.sh $ppath/scripts/tmux-jump.sh \
+            --prefix PATH : ${pkgs.lib.makeBinPath [ pkgs.ruby ]}
+
+        '';
+        src = pkgs.fetchFromGitHub {
+          owner = "schasse";
+          repo = pluginName;
+          rev = version;
+          sha256 = "1xbzdyhsgaq2in0f8f491gwjmx6cxpkf2c35d2dk0kg4jfs505sz";
+        };
+        dependencies = [ pkgs.ruby ];
+      };
       tmux-extrakto = mkDerivation rec {
         pluginName = "extrakto";
         version = "0b7d04c3b8118514e853b913bed68e9947d653cd";
@@ -58,6 +78,18 @@ let
           repo = "extrakto";
           rev = version;
           sha256 = "11ml0ck5fxnyls83xi7gixgpnpmpp2md2dif6ig8vian9b3v6wjq";
+        };
+        dependencies = [ pkgs.fzf ];
+      };
+      tmux-fzf-url = mkDerivation rec {
+        pluginName = "tmux-fzf-url";
+        version = "74d4f13c98cec03e4243adf719275ad880dabde0";
+        rtpFilePath = "fzf-url.tmux";
+        src = pkgs.fetchFromGitHub {
+          owner = "wfxr";
+          repo = pluginName;
+          rev = version;
+          sha256 = "0l43pi31isipd9p1qhj5cmajy70l6ijhzi1jpdmhid7735xnx36q";
         };
         dependencies = [ pkgs.fzf ];
       };

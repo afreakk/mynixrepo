@@ -1,4 +1,4 @@
-{ stdenv, lib, fetchurl, buildFHSUserEnv, makeDesktopItem, makeWrapper, atomEnv, libuuid, at-spi2-atk, icu, openssl, zlib }:
+{ stdenv, lib, fetchurl, buildFHSUserEnv, makeDesktopItem, makeWrapper, atomEnv, libuuid, at-spi2-atk, icu, openssl, zlib, wrapGAppsHook }:
 	let
 		pname = "sidequest";
 		version = "0.10.11";
@@ -19,7 +19,7 @@
 				sha256 = "0fw952kdh1gn00y6sx2ag0rnb2paxq9ikg4bzgmbj7rrd1c6l2k9";
 			};
 
-			buildInputs = [ makeWrapper ];
+			nativeBuildInputs = [ makeWrapper wrapGAppsHook ];
 
 			buildCommand = ''
 				mkdir -p "$out/lib/SideQuest" "$out/bin"
