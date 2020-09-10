@@ -131,6 +131,7 @@ let
       };
       modules = {
          strongdm = import ./modules/sdm;
+         mcfly_with_fix = import ./modules/mcfly;
       };
    };                                                                                   
    in self 
