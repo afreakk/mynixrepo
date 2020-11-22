@@ -48,6 +48,7 @@ let
       dmenu-afreak = pkgs.callPackage ./pkgs/dmenu {};
       dmenuhist = pkgs.callPackage ./pkgs/dmenuhist {};
       sidequest = pkgs.callPackage ./pkgs/sidequest {};
+      awscli = pkgs.callPackage ./pkgs/awscli {};
       dcreemer-1pass = pkgs.callPackage ./pkgs/dcreemer-1pass {};
       nix-doc = pkgs.callPackage ./pkgs/nix-doc {};
       tmux-jump = mkDerivation rec {
