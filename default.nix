@@ -130,6 +130,17 @@ let
         '';
         dependencies = [ self.thumbs ];
       };
+      url-handler-tmux = mkDerivation rec {
+        pluginName = "url-handler-tmux";
+        version = "cc3d0c4856e548a38c12165318ac82cbb7e1a222";
+        # src = ~/coding/url-handler-tmux;
+        src = pkgs.fetchFromGitLab {
+          owner = "afreakk";
+          repo = pluginName;
+          rev = version;
+          sha256 = "0xas40bzry94akdny2hmmcs130849z4318wvrs1zmyprds6ybhrq";
+        };
+      };
       modules = {
          strongdm = import ./modules/sdm;
          mcfly_with_fix = import ./modules/mcfly;
