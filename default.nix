@@ -44,6 +44,7 @@ let
     }));
   #END tmux spam
    self = {
+      wowup = pkgs.callPackage ./pkgs/wowup {};
       strongdm = pkgs.callPackage ./pkgs/sdm {};
       dmenu-afreak = pkgs.callPackage ./pkgs/dmenu {};
       dmenuhist = pkgs.callPackage ./pkgs/dmenuhist {};
