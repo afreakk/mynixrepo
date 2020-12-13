@@ -143,6 +143,22 @@ let
           sha256 = "1ybn13zaak6gyzl661mgdgl3kyk9bbqqvi64cya9ixkni4mby121";
         };
       };
+      fingers = mkDerivation rec {
+        pluginName = "fingers";
+        rtpFilePath = "tmux-fingers.tmux";
+        version = "1.0.1";
+        src = pkgs.fetchFromGitHub {
+          owner = "Morantron";
+          repo = "tmux-fingers";
+          rev = version;
+          sha256 = "0gp37m3d0irrsih96qv2yalvr1wmf1n64589d4qzyzq16lzyjcr0";
+          fetchSubmodules = true;
+        };
+        postInstall = ''
+          mkdir -p $out/share/tmux-plugins/fingers/.cache
+        '';
+        dependencies = [ pkgs.gawk ];
+      };
       modules = {
          strongdm = import ./modules/sdm;
          mcfly_with_fix = import ./modules/mcfly;
