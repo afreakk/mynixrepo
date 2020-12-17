@@ -133,14 +133,14 @@ let
       };
       url-handler-tmux = mkDerivation rec {
         pluginName = "url-handler-tmux";
-        # version = "lol";
+        # version = "lolx";
         # src = ~/coding/url-handler-tmux;
-        version = "fa8da841ea69095250e07382d96e92c3f25cd9d0";
-        src = pkgs.fetchFromGitLab {
+        version = "f0fbc5ab54fea10a556789e56a6514e40f2083f2";
+        src = pkgs.fetchFromGitHub {
           owner = "afreakk";
           repo = pluginName;
           rev = version;
-          sha256 = "1ybn13zaak6gyzl661mgdgl3kyk9bbqqvi64cya9ixkni4mby121";
+          sha256 = "0ib98269sx2cibvk9xlhrnm76fiy01127ppawwwnqgjjcx9229lw";
         };
       };
       fingers = mkDerivation rec {
