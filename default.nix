@@ -135,12 +135,12 @@ let
         pluginName = "url-handler-tmux";
         # version = "lolx";
         # src = ~/coding/url-handler-tmux;
-        version = "f0fbc5ab54fea10a556789e56a6514e40f2083f2";
+        version = "260432bef882b161a5a5314cdce17147af88c4c0";
         src = pkgs.fetchFromGitHub {
           owner = "afreakk";
           repo = pluginName;
           rev = version;
-          sha256 = "0ib98269sx2cibvk9xlhrnm76fiy01127ppawwwnqgjjcx9229lw";
+          sha256 = "1v4igddc3dijnygddsr6zs8664vwhl1v4lpfnb3xxpzlbfyb8j6b";
         };
       };
       fingers = mkDerivation rec {
