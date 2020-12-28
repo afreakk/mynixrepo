@@ -1,49 +1,13 @@
-{ pkgs ? import <nixpkgs> {} }:                                                   
-                                                                                   
+{ pkgs ? import <nixpkgs> {} }:
 let
-  #START tmux spam (will remove it once https://github.com/NixOS/nixpkgs/pull/95244 is merged
-  rtpPath = "share/tmux-plugins";
-
-  addRtp = path: rtpFilePath: attrs: derivation:
-    derivation // { rtp = "${derivation}/${path}/${rtpFilePath}"; } // {
-      overrideAttrs = f: mkDerivation (attrs // f attrs);
-    };
-
-  mkDerivation = a@{
-    pluginName,
-    rtpFilePath ? (builtins.replaceStrings ["-"] ["_"] pluginName) + ".tmux",
-    namePrefix ? "tmuxplugin-",
-    src,
-    unpackPhase ? "",
-    configurePhase ? ":",
-    buildPhase ? ":",
-    addonInfo ? null,
-    preInstall ? "",
-    postInstall ? "",
-    path ? pkgs.lib.getName pluginName,
-    dependencies ? [],
-    ...
-  }:
-    addRtp "${rtpPath}/${path}" rtpFilePath a (pkgs.stdenv.mkDerivation (a // {
-      pname = namePrefix + pluginName;
-
-      inherit pluginName unpackPhase configurePhase buildPhase addonInfo preInstall postInstall;
-
-      installPhase = ''
-        runHook preInstall
-        target=$out/${rtpPath}/${path}
-        mkdir -p $out/${rtpPath}
-        cp -r . $target
-        if [ -n "$addonInfo" ]; then
-          echo "$addonInfo" > $target/addon-info.json
-        fi
-        runHook postInstall
-      '';
-
-      dependencies = [ pkgs.bash ] ++ dependencies;
-    }));
-  #END tmux spam
-   self = {
+  tmuxHlp = import ./tmuxhelpers.nix {};
+  self = {
+    fish-history-merger = pkgs.callPackage (pkgs.fetchFromGitHub {
+      rev = "fe6794efa21498d974b185c0f14c2f47afd3cc1b";
+      owner = "afreakk";
+      repo = "fish-history-merger";
+      sha256 = "14jhlc7in63playaqdxykv6lqgxjj4r9yzvcm9i1fm6mkcgqswp7";
+    }) {};
       wowup = pkgs.callPackage ./pkgs/wowup {};
       strongdm = pkgs.callPackage ./pkgs/sdm {};
       dmenu-afreak = pkgs.callPackage ./pkgs/dmenu {};
@@ -52,7 +16,7 @@ let
       awscli = pkgs.callPackage ./pkgs/awscli {};
       dcreemer-1pass = pkgs.callPackage ./pkgs/dcreemer-1pass {};
       nix-doc = pkgs.callPackage ./pkgs/nix-doc {};
-      tmux-jump = mkDerivation rec {
+      tmux-jump = tmuxHlp.mkDerivation rec {
         pluginName = "tmux-jump";
         version = "416f613d3eaadbe1f6f9eda77c49430527ebaffb";
         rtpFilePath = "tmux-jump.tmux";
@@ -72,7 +36,7 @@ let
         };
         dependencies = [ pkgs.ruby ];
       };
-      tmux-extrakto = mkDerivation rec {
+      tmux-extrakto = tmuxHlp.mkDerivation rec {
         pluginName = "extrakto";
         version = "0b7d04c3b8118514e853b913bed68e9947d653cd";
         src = pkgs.fetchFromGitHub {
@@ -83,7 +47,7 @@ let
         };
         dependencies = [ pkgs.fzf ];
       };
-      tmux-fzf-url = mkDerivation rec {
+      tmux-fzf-url = tmuxHlp.mkDerivation rec {
         pluginName = "tmux-fzf-url";
         version = "74d4f13c98cec03e4243adf719275ad880dabde0";
         rtpFilePath = "fzf-url.tmux";
@@ -109,7 +73,7 @@ let
 
         cargoSha256 = "02lqxp56zhwk18f476iid0jcqgs2q4a10gv2ndpm3lqkzqkq7hsm";
       };
-      tmux-thumbs = mkDerivation rec {
+      tmux-thumbs = tmuxHlp.mkDerivation rec {
         pluginName = "thumbs";
         rtpFilePath = "tmux-thumbs.tmux";
         version = "b0a76015f5b6ab02ab11ffe96271a5ce847e366e";
@@ -131,7 +95,7 @@ let
         '';
         dependencies = [ self.thumbs ];
       };
-      url-handler-tmux = mkDerivation rec {
+      url-handler-tmux = tmuxHlp.mkDerivation rec {
         pluginName = "url-handler-tmux";
         # version = "lolx";
         # src = ~/coding/url-handler-tmux;
@@ -143,7 +107,7 @@ let
           sha256 = "1v4igddc3dijnygddsr6zs8664vwhl1v4lpfnb3xxpzlbfyb8j6b";
         };
       };
-      fingers = mkDerivation rec {
+      fingers = tmuxHlp.mkDerivation rec {
         pluginName = "fingers";
         rtpFilePath = "tmux-fingers.tmux";
         version = "1.0.1";
