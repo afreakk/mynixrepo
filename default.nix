@@ -3,10 +3,10 @@ let
   tmuxHlp = import ./tmuxhelpers.nix {};
   self = {
     fish-history-merger = pkgs.callPackage (pkgs.fetchFromGitHub {
-      rev = "1935b72c7a6b197ec971c3ce72f15d6a00b154f1";
+      rev = "eb6bb334a542c4ea457285a5f638f5288dd4bf70";
       owner = "afreakk";
       repo = "fish-history-merger";
-      sha256 = "06km6kfl1763anfr4zsm3h947lw769djbrk48b4fphvwvahs4if9";
+      sha256 = "0v6975qanlhiri3i6jrl5v59xb1910avqm9b48bi5hz5kkw5kd8m";
     }) {};
       wowup = pkgs.callPackage ./pkgs/wowup {};
       strongdm = pkgs.callPackage ./pkgs/sdm {};
