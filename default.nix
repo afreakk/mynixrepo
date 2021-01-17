@@ -15,7 +15,6 @@ let
       sidequest = pkgs.callPackage ./pkgs/sidequest {};
       awscli = pkgs.callPackage ./pkgs/awscli {};
       dcreemer-1pass = pkgs.callPackage ./pkgs/dcreemer-1pass {};
-      nix-doc = pkgs.callPackage ./pkgs/nix-doc {};
       tmux-jump = tmuxHlp.mkDerivation rec {
         pluginName = "tmux-jump";
         version = "416f613d3eaadbe1f6f9eda77c49430527ebaffb";

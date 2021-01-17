@@ -1,6 +1,3 @@
 [submodule "pkgs/dmenuhist/dmenuhistory"]
 	path = pkgs/dmenuhist/dmenuhistory
 	url = git@github.com:afreakk/dmenuhistory.git
-[submodule "pkgs/nix-doc"]
-	path = pkgs/nix-doc
-	url = git@github.com:lf-/nix-doc.git
