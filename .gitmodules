@@ -1,3 +1,0 @@
-[submodule "pkgs/dmenuhist/dmenuhistory"]
-	path = pkgs/dmenuhist/dmenuhistory
-	url = git@github.com:afreakk/dmenuhistory.git
