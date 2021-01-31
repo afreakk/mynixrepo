@@ -1,20 +1,23 @@
-{ unzip ? (import <nixpkgs> {}).pkgs.unzip,
-  stdenv ? (import <nixpkgs> {}).stdenv,
-  autoPatchelfHook?(import <nixpkgs> {}).autoPatchelfHook
+{ pkgs ? (import <nixpkgs> {})
 }:
-stdenv.mkDerivation {
+pkgs.stdenv.mkDerivation rec {
   name = "strongdm";
-  src = stdenv.mkDerivation {
-    src = ./sdmcli_1.5.13_linux_amd64.zip;
+  version = "30.86.0";
+  src = pkgs.stdenv.mkDerivation {
+    # src = ./sdmcli_1.5.13_linux_amd64.zip;
+    src = pkgs.fetchurl {
+      url ="https://sdm-releases-production.s3.amazonaws.com/builds/sdm-cli/${version}/linux/4E2E5E5B3AC091B11259854EF489A7654C9A248C/sdmcli_30.86.0_linux_amd64.zip";
+      sha256 = "1ijb2r1bmz5kh9pvc70sxmzd4fnpbl2myyh0a47qrvl35v7z5271";
+    };
     name = "strongdmpre";
-    buildInputs = [ unzip ];
+    buildInputs = [ pkgs.unzip ];
     unpackPhase = ''
       unzip $src
     '';
     installPhase = ''
       install -D sdm $out/bin/sdm
     '';
-    nativeBuildInputs = [ autoPatchelfHook ];
+    nativeBuildInputs = [ pkgs.autoPatchelfHook ];
   };
   installPhase = ''
     bin/sdm install || true
