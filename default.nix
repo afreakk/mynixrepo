@@ -2,6 +2,7 @@
 let
   tmuxHlp = import ./tmuxhelpers.nix { };
   self = {
+    realm-cli = pkgs.callPackage ./pkgs/realm-cli {};
     fish-history-merger = pkgs.callPackage
       (pkgs.fetchFromGitHub {
         rev = "8d08848aad5171ede58788148a9507c452dbb18f";
