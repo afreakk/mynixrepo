@@ -3,14 +3,7 @@ let
   tmuxHlp = import ./tmuxhelpers.nix { };
   self = {
     realm-cli = pkgs.callPackage ./pkgs/realm-cli {};
-    fish-history-merger = pkgs.callPackage
-      (pkgs.fetchFromGitHub {
-        rev = "8d08848aad5171ede58788148a9507c452dbb18f";
-        owner = "afreakk";
-        repo = "fish-history-merger";
-        sha256 = "1vq25i4l4ydddpa8nypfqzim6hpj3b0vggrh7kg7q8ximc7ykfy8";
-      })
-      { };
+    fish-history-merger = pkgs.callPackage ./pkgs/fish-history-merger {};
     wowup = pkgs.callPackage ./pkgs/wowup { };
     strongdm = pkgs.callPackage ./pkgs/sdm { };
     dmenu-afreak = pkgs.callPackage ./pkgs/dmenu { };
