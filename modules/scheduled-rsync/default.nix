@@ -30,24 +30,26 @@ in
       default = {};
       example = ''
       {
-        Description = "Backup home dir";
-        OnCalendar="Wed *-*-* 03:00:00";
-        from = "${config.home.homeDirectory}/"; #<- remember to postfix / if ur gonna use exclude-from like below
-        to = "/mnt/bigdisk/backup/home2021";
-        exclude-from = \'\'
-          /.nuget
-          /.npm
-          /.minikube
-          /.stack
-          /tmp
-          /go
-          /work
-          /database
-          /.cache
-          /Dropbox
-          /.dropbox-hm
-          /coding/kubernix
-        \'\';
+        backupHomeDir = {
+          Description = "Backup home dir";
+          OnCalendar="Wed *-*-* 03:00:00";
+          from = "${config.home.homeDirectory}/"; #<- remember to postfix / if ur gonna use exclude-from like below
+          to = "/mnt/bigdisk/backup/home2021";
+          exclude-from = \'\'
+            /.nuget
+            /.npm
+            /.minikube
+            /.stack
+            /tmp
+            /go
+            /work
+            /database
+            /.cache
+            /Dropbox
+            /.dropbox-hm
+            /coding/kubernix
+          \'\';
+        };
       }
       '';
       description = ''
