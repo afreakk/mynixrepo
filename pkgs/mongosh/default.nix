@@ -16,7 +16,7 @@ stdenv.mkDerivation rec {
   };
   buildInputs = [
     # for libssl.so.1.1 & libcrypto.so.1.1
-    openssl
+    openssl_1_1
     # for liblzma.so.5
     xz
     # for libcom_err.so.2
