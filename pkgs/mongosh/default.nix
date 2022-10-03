@@ -1,11 +1,11 @@
 { stdenv
 , autoPatchelfHook
 , fetchurl
-, openssl
 , xz
 , e2fsprogs
 , cyrus_sasl
 , libkrb5
+, openssl_1_1
 }:
 stdenv.mkDerivation rec {
   name = "mongosh";
