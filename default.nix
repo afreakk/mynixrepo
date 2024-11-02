@@ -14,12 +14,12 @@ let
     mongosh = pkgs.callPackage ./pkgs/mongosh { };
     url-handler-tmux = tmuxHlp.mkDerivation rec {
       pluginName = "url-handler-tmux";
-      version = "2366e0a8e3728dc2f08137b6fc89c56ef36506ed";
+      version = "ec950050f36e0060dcfa13059f56eb256f1ccb8a";
       src = pkgs.fetchFromGitHub {
         owner = "afreakk";
         repo = pluginName;
         rev = version;
-        sha256 = "sha256-hrbmw/HBf0MlQGl5riRqK66BJLEVXM4zR43FhY1gOTg=";
+        sha256 = "sha256-Oye6b8f3t1Yo+bGFaWh5AW75xMk52NEtO0QgBUQoXX4=";
       };
     };
     modules = {
